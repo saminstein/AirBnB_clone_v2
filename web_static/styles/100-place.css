@@ -1,0 +1,92 @@
+div.guests {
+  background-image: url(../images/icon_group.png);
+}
+
+div.bedroom {
+  background-image: url(../images/icon_bed.png);
+}
+
+div.bathroom {
+  background-image: url(../images/icon_bath.png);
+}
+
+p {
+  margin: 0;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+div.user {
+  margin-top: 20px;
+  float: left;
+}
+
+div.description {
+  float: left;
+}
+
+.description > p {
+  text-align: left;
+}
+
+article .amenities,
+article .reviews {
+  margin: 50px 0px 70px;
+  padding: 0px;
+  text-align: left;
+  width: 100%;
+  height: inherit;
+}
+
+.amenities h2,
+.reviews h2 {
+  margin-left: 0px;
+  font-size: 16px;
+  border-bottom: 1px solid #DDDDDD;
+  padding-bottom: 8px;
+}
+
+article .amenities ul,
+article .reviews ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0 0 0;
+}
+
+article .amenities ul li {
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 30px 30px;
+}
+
+.ic li {
+  display: flex;
+  align-items: center;
+  padding-left: 45px;
+  white-space: nowrap;
+}
+
+.reviews h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.reviews ul li, 
+.reviews p {
+  font-size: 13px;
+  text-align: left;
+}
+
+.amenities .tv {
+  background-image: url(../images/icon_tv.png);
+}
+
+.amenities .wifi {
+  background-image: url(../images/icon_wifi.png);
+}
+
+.amenities .pet {
+  background-image: url(../images/icon_pets.png);
+}
