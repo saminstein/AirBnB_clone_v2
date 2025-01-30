@@ -5,22 +5,45 @@ from datetime import datetime
 
 
 class BaseModel:
-    """A base class for all hbnb models"""
+    '''
+    This is the base model that takes care of
+    the initialization, serialization and dese
+    rialization of your future instances
+
+    Attributes:
+        - id(str): This is an UUID for when an        instance is created
+        - created_at(datetime): This will assi
+        gn  instance with date & time it was
+        created
+        - updated_at(datetime): This will assi
+        gn instance with date & time it was up
+        dated
+    '''
+
     def __init__(self, *args, **kwargs):
-        """Instatntiates a new model"""
-        if not kwargs:
-            from models import storage
+        '''
+        initializes attributes: id, created_at,
+        updated_at
+        '''
+
+        dateformat = '%Y-%m-%dT%H:%M:%S.%f'
+        if kwargs:
+            for key, value in kwargs.items():
+                if "__class__" == key:
+                    continue
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(
+                        kwargs["created_at"], dateformat)
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(
+                        kwargs["updated_at"], dateformat)
+                else:
+                    setattr(self, key, value)
+        else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
-        else:
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            del kwargs['__class__']
-            self.__dict__.update(kwargs)
+            models.storage.new(self)
 
     def __str__(self):
         """Returns a string representation of the instance"""

@@ -117,6 +117,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
+        
         if not args:
           raise SyntaxError()
         arg_list = args.split(" ");
@@ -132,21 +133,17 @@ class HBNBCommand(cmd.Cmd):
         kw_dict = {}
         for param in params:
           par_splitted = param.split("=");
-          par_splitted[1] = eval(par_splitted[1]);
+          key = par_splitted[0];
+          value = eval(par_splitted[1]);
           
-          if isinstance(par_splitted[1], str):
-            modified_val = par_splitted[1].replace('"', '\\"').replace("_", " ");
-            kw_dict[modified_val[0]] = modified_val[1]
-            
-        # Ensure 'updated_at' is included in kw_dict if missing
-        if 'updated_at' not in kw_dict:
-            kw_dict['updated_at'] = datetime.now()
+          if isinstance(value, str):
+            value = value.replace('"', '\\"').replace("_", " ");
+            kw_dict[key] = value;
 
         new_instance = HBNBCommand.classes[class_name](**kw_dict)
         storage.new(new_instance)
         print(new_instance.id)
         new_instance.save()
-        
 
     def help_create(self):
         """ Help information for the create method """
